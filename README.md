@@ -27,7 +27,7 @@ A digital time capsule app. Write a message, add photos, and lock them until a f
 | Email      | Resend                                             |
 | Scheduling | node-cron                                          |
 | Security   | bcryptjs, JWT, helmet, express-rate-limit, zod     |
-| Hosting    | Render (API), Vercel (client), MongoDB Atlas       |
+| Hosting    | Render (API), Vercel (frontend), MongoDB Atlas     |
 
 ## How it works
 
@@ -41,8 +41,8 @@ A digital time capsule app. Write a message, add photos, and lock them until a f
 
 ```
 time-capsule/
-├── client/    # React frontend
-└── server/    # Express API, models, cron job, email
+├── frontend/    # React frontend
+└── backend/     # Express API, models, cron job, email
 ```
 
 ## Getting started
@@ -61,10 +61,10 @@ git clone https://github.com/your-username/time-capsule.git
 cd time-capsule
 ```
 
-### 2. Server
+### 2. Backend
 
 ```bash
-cd server
+cd backend
 npm install
 cp .env.example .env
 ```
@@ -89,14 +89,14 @@ Then start it:
 npm run dev
 ```
 
-### 3. Client
+### 3. Frontend
 
 ```bash
-cd client
+cd frontend
 npm install
 ```
 
-Create `client/.env`:
+Create `frontend/.env`:
 
 ```
 VITE_API_URL=http://localhost:5000/api
@@ -112,15 +112,15 @@ The app runs at http://localhost:5173.
 
 ## API overview
 
-| Method | Endpoint                  | Description                                        |
-| ------ | ------------------------- | -------------------------------------------------- |
-| POST   | `/api/auth/register`      | Create an account                                  |
-| POST   | `/api/auth/login`         | Log in, returns a JWT                              |
-| GET    | `/api/auth/me`            | Current user                                       |
-| POST   | `/api/capsules`           | Create a capsule (multipart, with photos)          |
-| GET    | `/api/capsules`           | List the user's capsules (locked ones are redacted)|
-| GET    | `/api/capsules/:id`       | Get one capsule; content only if unlocked          |
-| GET    | `/api/capsules/open/:token` | Open a received capsule by token (if unlocked)   |
+| Method | Endpoint                    | Description                                         |
+| ------ | --------------------------- | --------------------------------------------------- |
+| POST   | `/api/auth/register`        | Create an account                                   |
+| POST   | `/api/auth/login`           | Log in, returns a JWT                               |
+| GET    | `/api/auth/me`              | Current user                                        |
+| POST   | `/api/capsules`             | Create a capsule (multipart, with photos)           |
+| GET    | `/api/capsules`             | List the user's capsules (locked ones are redacted) |
+| GET    | `/api/capsules/:id`         | Get one capsule; content only if unlocked           |
+| GET    | `/api/capsules/open/:token` | Open a received capsule by token (if unlocked)      |
 
 ## Design decisions
 
@@ -133,9 +133,9 @@ The app runs at http://localhost:5173.
 ## Deployment
 
 - **Database:** MongoDB Atlas
-- **API:** Render, with the environment variables above set in the dashboard
-- **Client:** Vercel, with `VITE_API_URL` pointing to the deployed API
-- Set `CLIENT_URL` on the server to the deployed client URL so CORS and email links work
+- **API:** Render (root directory `backend`), with the environment variables above set in the dashboard
+- **Frontend:** Vercel (root directory `frontend`), with `VITE_API_URL` pointing to the deployed API
+- Set `CLIENT_URL` on the backend to the deployed frontend URL so CORS and email links work
 
 ## Future improvements
 
