@@ -144,7 +144,3 @@ The app runs at http://localhost:5173.
 - Reminder email to the sender before unlock
 - Edit or delete a capsule before it is locked
 - Tests for the lock logic and scheduler
-
-## License
-
-MIT
