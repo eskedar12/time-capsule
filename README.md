@@ -2,10 +2,6 @@
 
 A digital time capsule app. Write a message, add photos, and lock them until a future date. Send a capsule to someone else: they can't open it until the date arrives, and they get an email when it unlocks.
 
-**Live app:** https://your-app-url-here
-**API:** https://your-api-url-here
-**Repo:** https://github.com/your-username/time-capsule
-
 ## Features
 
 - Create capsules with a message, photos and an unlock date
