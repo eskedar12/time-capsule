@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema(
       lowercase: true,
       trim: true,
     },
+    // Holds the bcrypt hash, never the real password. Hidden from queries by default.
     password: { type: String, required: true, minlength: 8, select: false },
   },
   { timestamps: true }
